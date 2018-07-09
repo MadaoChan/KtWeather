@@ -1,13 +1,17 @@
 package com.madaochan.ktweather.data
 
+import com.google.gson.annotations.SerializedName
+
 data class Forecast(
         val dt: Long,
-        val temp: Temperature,
+        @SerializedName("main") val temp: Temperature,
         val pressure: Float,
         val humidity: Float,
         val weather: List<Weather>,
-        val speed: Float,
-        val deg: Float,
-        val clouds: Int,
-        val rain: Float
+        val clouds: Clouds,
+        val rain: Rain,
+        val sys: Sys,
+        @SerializedName("dt_txt") val datetimeText: String
+//        val clouds: Int,
+//        val rain: Float
 )

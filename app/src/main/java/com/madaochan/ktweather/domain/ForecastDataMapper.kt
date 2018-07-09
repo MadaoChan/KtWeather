@@ -1,5 +1,6 @@
 package com.madaochan.ktweather.domain
 
+import android.util.Log
 import com.madaochan.ktweather.data.Forecast
 import com.madaochan.ktweather.domain.model.ForecastList
 import com.madaochan.ktweather.data.ForecastResult
@@ -10,6 +11,7 @@ import com.madaochan.ktweather.domain.model.Forecast as ModelForecast
 class ForecastDataMapper {
 
     fun convertFromDataModel(forecast: ForecastResult): ForecastList {
+        Log.e(javaClass.simpleName, forecast.list.size.toString())
         return ForecastList(
                 forecast.city.name,
                 forecast.city.country,
@@ -24,11 +26,12 @@ class ForecastDataMapper {
     }
 
     private fun convertForecastItemToDomain(forecast: Forecast): ModelForecast {
+        Log.e(javaClass.simpleName, forecast.weather[0].description)
         return ModelForecast(
-                convertDate(forecast.dt),
+                forecast.datetimeText,
                 forecast.weather[0].description,
-                forecast.temp.max.toInt(),
-                forecast.temp.min.toInt()
+                forecast.temp.temp_max.toInt(),
+                forecast.temp.temp_min.toInt()
         )
     }
 

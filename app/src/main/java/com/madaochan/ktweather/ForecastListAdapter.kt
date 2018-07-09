@@ -17,7 +17,7 @@ class ForecastListAdapter(val weekForecast: ForecastList) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        with(weekForecast.dailyForecast[0]) {
+        with(weekForecast.dailyForecast[position]) {
             holder.textView.text = "${this.date} - ${this.description} - ${this.low} - ${this.high}"
         }
     }
