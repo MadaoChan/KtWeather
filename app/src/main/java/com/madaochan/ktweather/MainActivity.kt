@@ -4,14 +4,12 @@ import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.widget.TextView
 import android.widget.Toast
 import com.madaochan.ktweather.domain.RequestForecastCommand
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.find
 import org.jetbrains.anko.toast
 import org.jetbrains.anko.uiThread
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,18 +30,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val messageTextView = findViewById<TextView>(R.id.message)
-        messageTextView.text = ""
+//        val messageTextView = findViewById<TextView>(R.id.message)
+        message.text = ""
 //        message.text = getString(R.string.app_name)
 
-        val forecastList : RecyclerView = find(R.id.forecast_list)
-        forecastList.layoutManager = LinearLayoutManager(this)
+//        val forecastList : RecyclerView = find(R.id.forecast_list)
+        forecast_list.layoutManager = LinearLayoutManager(this)
 
 
         doAsync {
             val result = RequestForecastCommand("Guangzhou").execute()
             uiThread {
-                forecastList.adapter = ForecastListAdapter(result) { toast(it.date) }
+                forecast_list.adapter = ForecastListAdapter(result) { toast(it.date) }
             }
         }
 //        forecastList.adapter = ensureAdapter()

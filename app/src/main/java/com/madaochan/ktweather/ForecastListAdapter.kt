@@ -4,12 +4,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import com.madaochan.ktweather.domain.model.ForecastList
 import com.madaochan.ktweather.domain.model.WeatherForecast
 import com.squareup.picasso.Picasso
-import org.jetbrains.anko.find
+import kotlinx.android.synthetic.main.item_forecast.view.*
 
 class ForecastListAdapter(
         private val forecastList: ForecastList,
@@ -38,19 +36,19 @@ class ForecastListAdapter(
         : RecyclerView.ViewHolder(view) {
 
         // (T) -> Unit是OnClickListener的一个Lambda表现形式
-        private val iconView: ImageView = view.find(R.id.weather_icon)
-        private val dateView: TextView = view.find(R.id.datetime_text)
-        private val descriptionView: TextView = view.find(R.id.weather_description)
-        private val maxTempView: TextView = view.find(R.id.max_temp)
-        private val minTempView: TextView = view.find(R.id.min_temp)
+//        private val iconView: ImageView = view.find(R.id.weather_icon)
+//        private val dateView: TextView = view.find(R.id.datetime_text)
+//        private val descriptionView: TextView = view.find(R.id.weather_description)
+//        private val maxTempView: TextView = view.find(R.id.max_temp)
+//        private val minTempView: TextView = view.find(R.id.min_temp)
 
         fun bindForecast(forecast: WeatherForecast) {
             with(forecast) {
-                Picasso.get().load(iconUrl).into(iconView)
-                dateView.text = date
-                descriptionView.text = description
-                maxTempView.text = high.toString()
-                minTempView.text = low.toString()
+                Picasso.get().load(iconUrl).into(itemView.weather_icon)
+                itemView.datetime_text.text = date
+                itemView.weather_description.text = description
+                itemView.max_temp.text = high.toString()
+                itemView.min_temp.text = low.toString()
 
                 itemView.setOnClickListener {
                     itemClick(forecast)
