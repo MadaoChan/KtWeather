@@ -5,8 +5,6 @@ import com.google.gson.annotations.SerializedName
 data class Forecast(
         val dt: Long,
         @SerializedName("main") val temp: Temperature,
-        val pressure: Float,
-        val humidity: Float,
         val weather: List<Weather>,
         val clouds: Clouds,
         val rain: Rain,

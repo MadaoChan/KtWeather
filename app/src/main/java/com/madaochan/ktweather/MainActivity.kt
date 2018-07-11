@@ -10,6 +10,7 @@ import android.widget.Toast
 import com.madaochan.ktweather.domain.RequestForecastCommand
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.find
+import org.jetbrains.anko.toast
 import org.jetbrains.anko.uiThread
 
 class MainActivity : AppCompatActivity() {
@@ -32,22 +33,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val messageTextView = findViewById<TextView>(R.id.message)
-        messageTextView.text = "Hello"
+        messageTextView.text = ""
 //        message.text = getString(R.string.app_name)
 
-        val forecastList : RecyclerView = find(R.id.forcast_list)
+        val forecastList : RecyclerView = find(R.id.forecast_list)
         forecastList.layoutManager = LinearLayoutManager(this)
 
 
         doAsync {
             val result = RequestForecastCommand("Guangzhou").execute()
             uiThread {
-                forecastList.adapter = ForecastListAdapter(result)
+                forecastList.adapter = ForecastListAdapter(result) { toast(it.date) }
             }
         }
 //        forecastList.adapter = ensureAdapter()
 
-        toastWithTag("Context.toast")
+//        toastWithTag("Context.toast")
     }
 
     fun add(x: Int, y: Int) = x + y

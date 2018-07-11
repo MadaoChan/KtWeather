@@ -7,8 +7,8 @@ data class Temperature(
         @SerializedName("temp_min") val temp_min: Float,
         @SerializedName("temp_max") val temp_max: Float,
         val pressure: Float,
-        @SerializedName("sea_level") val seaLevel: Float,
-        @SerializedName("grnd_level") val groundLevel: Float,
+        val sea_level: Float,
+        val grnd_level: Float,
         val humidity: Float,
         @SerializedName("temp_kf") val tempKf: Float
 //        val morning: Float,
