@@ -1,6 +1,7 @@
 package com.madaochan.ktweather
 
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,8 @@ import com.madaochan.ktweather.domain.model.ForecastList
 import com.madaochan.ktweather.domain.model.WeatherForecast
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_forecast.view.*
+import kotlin.properties.Delegates
+import kotlin.reflect.KMutableProperty
 
 class ForecastListAdapter(
         private val forecastList: ForecastList,
@@ -15,8 +18,12 @@ class ForecastListAdapter(
 
         RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
 
+    var myVal: WeatherForecast by Delegates.observable(forecastList[0]) {
+        k, old, new ->
+        Log.e(javaClass.simpleName, "$k ${old.date} ${new.date}")
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-//        return ViewHolder(TextView(parent.context))
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_forecast, null)
         return ViewHolder(view, itemClick)
     }
