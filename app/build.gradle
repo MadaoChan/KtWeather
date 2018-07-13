@@ -26,6 +26,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "org.jetbrains.anko:anko-common:$anko_version"
+    implementation "org.jetbrains.anko:anko-sqlite:$anko_version"
     // 只要在用了 apply plugin: "kotlin-android-extensions"
     // 就不要再加implementation，否则会有冲突而无法编译
 //    implementation "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
